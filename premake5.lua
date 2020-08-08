@@ -67,7 +67,7 @@ function linkSFML()
     filter{}
 end
 
-workspace "iso-workspace"
+workspace "playground-workspace"
     location "projects"
     language "C++"
     architecture "x86_64"
@@ -92,6 +92,19 @@ project "iso"
     files "projects/iso/src/**.cpp"
     files "projects/iso/src/**.h"
     files "projects/iso/src/**.hpp"
+    includeFastNoise()
+    includeSFML()
+    linkSFML()
+    includeIMGUI()
+    linkIMGUI()
+
+project "sand"
+    location "projects/sand"
+    kind "ConsoleApp"
+    cppdialect "C++17"
+    files "projects/sand/src/**.cpp"
+    files "projects/sand/src/**.h"
+    files "projects/sand/src/**.hpp"
     includeFastNoise()
     includeSFML()
     linkSFML()
