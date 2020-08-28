@@ -1,10 +1,10 @@
-function includeSFML()
-    includedirs "libraries/SFML/include"
-end
-
 function includeFastNoise()
     includedirs "libraries/fast-noise"
     files "libraries/fast-noise/*.cpp"
+end
+
+function includeEntt()
+    includedirs "libraries/entt/"
 end
 
 function includeIMGUI()
@@ -18,6 +18,10 @@ function linkIMGUI()
     files "libraries/IMGUI/imgui/imgui_widgets.cpp"
     files "libraries/IMGUI/imgui-sfml/imgui-SFML.cpp"
     files "libraries/IMGUI/imgui/imgui_demo.cpp"
+end
+
+function includeSFML()
+    includedirs "libraries/SFML/include"
 end
 
 function linkSFML()
@@ -67,6 +71,23 @@ function linkSFML()
     filter{}
 end
 
+function includeRaylib()
+    includedirs "libraries/ray-lib/include"
+end
+
+function linkRaylib()
+    libdirs "libraries/ray-lib/lib"
+    defines {
+        "GRAPHICS_API_OPENGL_33",
+        "PLATFORM_DESKTOP"
+    }
+
+    links {
+        "raylib",
+    }
+    filter{}
+end
+
 workspace "playground-workspace"
     location "projects"
     language "C++"
@@ -110,3 +131,14 @@ project "sand"
     linkSFML()
     includeIMGUI()
     linkIMGUI()
+
+project "dino"
+    location "projects/dino"
+    kind "ConsoleApp"
+    cppdialect "C++17"
+    files "projects/dino/src/**.cpp"
+    files "projects/dino/src/**.h"
+    files "projects/dino/src/**.hpp"
+    includeRaylib()
+    linkRaylib()
+    includeEntt()
